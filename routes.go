@@ -82,3 +82,18 @@ func playersHandler(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Content-Type", "Application/json;charset=UTF-8")
   w.Write(outputBytes)
 }
+
+func matchesHandler(w http.ResponseWriter, r *http.Request) {
+  output := map[string]interface{} {
+    "matched players": rosterMatch(),
+  }
+
+  outputBytes, err := json.Marshal(output)
+  if err != nil {
+    log.Printf("Error marshalling JSON: %s\n", err)
+    return
+  }
+
+  w.Header().Set("Content-Type", "Application/json;charset=UTF-8")
+  w.Write(outputBytes)
+}

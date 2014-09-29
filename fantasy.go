@@ -34,9 +34,12 @@ func main() {
   r.HandleFunc("/authorize", authorizeHandler)
   r.HandleFunc("/oauth/callback", oauthCallbackHandler)
   r.HandleFunc("/players.json", playersHandler)
+  r.HandleFunc("/matches.json", matchesHandler)
   http.Handle("/", r)
 
-  fmt.Printf("%v\n", yahooAuthClient.TemporaryCredentialRequestURI)
+  // fmt.Printf("%v\n", yahooAuthClient.TemporaryCredentialRequestURI)
+
+  fmt.Printf("%v\n", rosterMatch())
 
   addr := fmt.Sprintf("%s:%v", *host, *port)
   log.Printf("Listening on http://%s\n", addr)
